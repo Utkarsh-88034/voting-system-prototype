@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.11;
+pragma solidity >=0.4.22 <0.9.0;
 
 contract VotingSystem {
     struct Voter{
@@ -12,8 +12,17 @@ contract VotingSystem {
         string name;
         uint voteCount;
     }
+    uint public voterCount;
+    uint public candidateCount;
     mapping(uint=>Candidate) public candidateList;
     mapping(uint=>Voter) public voterList;
+
+    constructor() public{
+        createCandidate(1, "admin-candidate");
+        createVoter(1, "admin-voter");
+        voterCount = 1;
+        candidateCount = 1;
+    }
     function vote(uint candidateId, uint voterId) public {
         if(voterList[voterId].cast !=true){
             candidateList[candidateId].voteCount++;
