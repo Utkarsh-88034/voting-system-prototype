@@ -31,8 +31,10 @@ contract VotingSystem {
     }
     function createCandidate(uint id, string memory name) public{
         candidateList[id] = Candidate(id,name,0);
+        candidateCount+=1;
     }
     function createVoter(uint id, string memory name) public{
         voterList[id] = Voter(id,name,false);
+        voterCount+=1;
     }
 }
